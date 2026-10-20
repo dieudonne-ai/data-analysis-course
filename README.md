@@ -9,7 +9,7 @@ New lessons are added regularly, one commit per lesson.
 |---|--------|--------|
 | 01 | [Introduction to Data Analysis](01-introduction/README.md) | done |
 | 02 | [Python Basics for Analysts](02-python-basics/README.md) | done |
-| 03 | Data Loading with pandas | planned |
+| 03 | [Data Loading with pandas](03-data-loading/README.md) | done |
 | 04 | Data Cleaning | planned |
 | 05 | Exploratory Data Analysis | planned |
 | 06 | Data Visualization | planned |
@@ -26,3 +26,6 @@ pip install -r requirements.txt
 ```
 
 Each module has a `README.md` (the lesson) and an `examples/` folder with runnable scripts.
+
+## Extras
+- [Git basics for analysts](docs/git-basics.md)
