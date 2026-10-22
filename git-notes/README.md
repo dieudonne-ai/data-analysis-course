@@ -37,3 +37,19 @@ git revert <commit>         # safe undo: creates a new commit
 
 ## Tip for data projects
 Commit code and small datasets; add large or private data to `.gitignore`.
+
+## `.gitignore` in practice
+A `.gitignore` file lists patterns Git must not track:
+```
+.venv/
+__pycache__/
+*.csv.bak
+```
+Already-tracked files are not affected; remove them with `git rm --cached <file>`.
+
+## Inspecting history
+```bash
+git log --oneline --graph --all   # branches as a graph
+git show <commit>                 # what did this commit change?
+git diff HEAD~1                   # compare with the previous commit
+```
