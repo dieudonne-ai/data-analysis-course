@@ -37,3 +37,14 @@ git revert <commit>         # safe undo: creates a new commit
 
 ## Tip for data projects
 Commit code and small datasets; add large or private data to `.gitignore`.
+
+## Day 4: keeping raw data safe (`.gitignore`)
+Generated files should not be committed; they can be rebuilt from the script.
+`data/sales_clean.csv` is produced by `04-data-cleaning/examples/clean_sales.py`, so it is listed in `.gitignore`:
+```bash
+echo "data/sales_clean.csv" >> .gitignore
+git status                    # the ignored file no longer shows up
+git check-ignore -v data/sales_clean.csv   # which rule ignores it?
+```
+Rule of thumb: commit the **raw** data (when small) and the **code**, ignore the **outputs**.
+If a file was already committed, `.gitignore` is not enough: run `git rm --cached <file>` first.

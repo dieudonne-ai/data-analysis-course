@@ -1,0 +1,12 @@
+order_id,customer,product,quantity,price,order_date,country
+1,  alice ,Pen,10,1.5,2026-01-03,UK
+2,Bob,notebook,3,4.0,2026-01-05,uk
+3,Carol,Pen,,1.5,2026-01-09,UK
+4,Dave,Bag,1,25.0,03/02/2026,Kenya
+5,Eve,Notebook,8,4.0,2026-02-11,KENYA
+5,Eve,Notebook,8,4.0,2026-02-11,KENYA
+6,Frank,pen,12,1.5,2026-02-20,Uganda
+7,Grace,Bag,2,N/A,2026-03-01,Uganda
+8,Heidi,Notebook,-6,4.0,2026-03-07,UK
+9,Ivan,Pen,5,150.0,2026-03-15,Kenya
+10,Judy,Bag,1,25.0,,Uganda
