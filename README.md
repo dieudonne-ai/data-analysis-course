@@ -25,6 +25,6 @@ python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-Extras: [Git notes](git-notes/README.md)
+Extras: [Git notes](git-notes/README.md), [Branching and merging](git-notes/branching.md)
 
 Each module has a `README.md` (the lesson) and an `examples/` folder with runnable scripts.
