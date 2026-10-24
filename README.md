@@ -14,7 +14,7 @@ New lessons are added regularly, one commit per lesson.
 | 05 | [Exploratory Data Analysis](05-eda/README.md) | done |
 | 06 | [Data Visualization](06-visualization/README.md) | done |
 | 07 | [Statistics Fundamentals](07-statistics/README.md) | done |
-| 08 | Hypothesis Testing | planned |
+| 08 | [Hypothesis Testing](08-hypothesis-testing/README.md) | done |
 | 09 | Regression & Prediction | planned |
 | 10 | Final Project | planned |
 
