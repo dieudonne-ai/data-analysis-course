@@ -1,0 +1,10 @@
+order_id,customer,product,quantity,price,order_date,city
+1,Alice,Pen,10,1.5,2024-01-05,Kampala
+2,bob ,Notebook,3,4.0,2024-01-09,kampala
+3,Carol,Pen,,1.5,2024-02-01,Entebbe
+4,Dave,Bag,1,25.0,2024-02-14,Jinja
+4,Dave,Bag,1,25.0,2024-02-14,Jinja
+5,Eve,Notebook,8,N/A,2024-03-02,Kampala
+6,Frank,Pen,12,1.5,03/15/2024,Entebbe
+7,Grace,Bag,200,25.0,2024-03-20,Jinja
+8,Heidi,Notebook,6,4.0,2024-04-11,
