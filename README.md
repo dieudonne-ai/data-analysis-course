@@ -15,7 +15,7 @@ New lessons are added regularly, one commit per lesson.
 | 06 | [Data Visualization](06-visualization/README.md) | done |
 | 07 | [Statistics Fundamentals](07-statistics/README.md) | done |
 | 08 | [Hypothesis Testing](08-hypothesis-testing/README.md) | done |
-| 09 | Regression & Prediction | planned |
+| 09 | [Regression & Prediction](09-regression/README.md) | done |
 | 10 | Final Project | planned |
 
 ## Setup
