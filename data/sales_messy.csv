@@ -1,0 +1,12 @@
+order_id,product,quantity,price,month,customer_email
+1,Pen,10,1.5,Jan,anna@mail.com
+2,notebook ,3,4.0,Jan,ben@mail.com
+3,Pen,,1.5,Feb,carl@mail.com
+4,Bag,1,25.0,Feb,
+5,Pen,5,1.5,Feb,dina@mail.com
+5,Pen,5,1.5,Feb,dina@mail.com
+6,NOTEBOOK,4,4.0,Mar,eric@mail.com
+7,Bag,2,-25.0,Mar,fay@mail.com
+8,Pen,7,1.5,Mar,gus@mail.com
+9,Bag,300,25.0,Apr,hana@mail.com
+10,Notebook,2,,Apr,ivan@mail.com
