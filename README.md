@@ -12,7 +12,7 @@ New lessons are added regularly, one commit per lesson.
 | 03 | [Data Loading with pandas](03-data-loading/README.md) | done |
 | 04 | [Data Cleaning](04-data-cleaning/README.md) | done |
 | 05 | [Exploratory Data Analysis](05-eda/README.md) | done |
-| 06 | Data Visualization | planned |
+| 06 | [Data Visualization](06-visualization/README.md) | done |
 | 07 | Statistics Fundamentals | planned |
 | 08 | Hypothesis Testing | planned |
 | 09 | Regression & Prediction | planned |
