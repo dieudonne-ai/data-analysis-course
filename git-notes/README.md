@@ -37,3 +37,12 @@ git revert <commit>         # safe undo: creates a new commit
 
 ## Tip for data projects
 Commit code and small datasets; add large or private data to `.gitignore`.
+
+## Never commit generated or private files (`.gitignore`)
+Cleaned outputs and virtual environments should not pollute history:
+```gitignore
+.venv/
+__pycache__/
+*.pyc
+```
+Raw data stays committed (reproducibility); big or private datasets do not.

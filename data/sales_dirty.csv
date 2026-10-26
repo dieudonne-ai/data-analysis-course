@@ -1,0 +1,11 @@
+order_id,customer,product,quantity,price,order_date
+1,alice,Pen,10,1.5,2024-01-05
+2,Bob ,notebook,3,4.0,2024-01-07
+3,Alice,Pen,,1.5,2024-02-11
+4,carol,Bag,1,25.0,2024-02-14
+4,carol,Bag,1,25.0,2024-02-14
+5,Bob,Pen,5,N/A,2024-03-02
+6,dave,Notebook,-2,4.0,2024-03-09
+7,Eve,Bag,2,25.0,not a date
+8,alice,Notebook,400,4.0,2024-03-21
+9,Carol,Pen,7,1.5,2024-03-28
