@@ -37,3 +37,10 @@ git revert <commit>         # safe undo: creates a new commit
 
 ## Tip for data projects
 Commit code and small datasets; add large or private data to `.gitignore`.
+
+## Inspecting history
+```bash
+git log --oneline --graph   # history as a graph
+git show HEAD               # what the last commit changed
+git blame file.py           # who changed each line
+```
