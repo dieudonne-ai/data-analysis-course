@@ -1,0 +1,7 @@
+order_id,customer,product,quantity,price,date,price_outlier
+1,Alice,Pen,10.0,1.5,2024-01-05,False
+2,Bob,Notebook,3.0,4.0,2024-01-07,False
+3,Carol,Pen,3.0,1.5,2024-02-11,False
+4,Dave,Bag,1.0,25.0,,False
+5,Eve,Pen,5.0,1.5,2024-02-20,False
+7,Grace,Bag,1.0,2500.0,2024-03-09,True
