@@ -37,3 +37,45 @@ git revert <commit>         # safe undo: creates a new commit
 
 ## Tip for data projects
 Commit code and small datasets; add large or private data to `.gitignore`.
+
+## Branch diagram
+See [`git_branches.pdf`](git_branches.pdf): work on a `feature` branch, then merge it back
+into `main` so unfinished work never breaks the stable version.
+
+## .gitignore
+A `.gitignore` file lists what Git must not track:
+```gitignore
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+data/private/
+```
+Files already committed stay tracked: remove them with `git rm --cached <file>`.
+
+## Inspecting history
+```bash
+git log --oneline --graph   # compact history with branches
+git show <commit>           # what a commit changed
+git blame file.py           # who changed each line
+git diff main..feature      # compare two branches
+```
+
+## Stash and tags
+```bash
+git stash          # park unfinished edits
+git stash pop      # bring them back
+git tag v1.0       # label a milestone (e.g. "course released")
+```
+
+## Merge conflicts
+When two branches edit the same lines, Git marks the file:
+```text
+<<<<<<< HEAD
+price = 1.5
+=======
+price = 1.6
+>>>>>>> feature
+```
+Edit the file to keep the right version, delete the markers, then `git add file` and
+`git commit`.
