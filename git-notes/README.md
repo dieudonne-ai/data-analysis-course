@@ -37,3 +37,12 @@ git revert <commit>         # safe undo: creates a new commit
 
 ## Tip for data projects
 Commit code and small datasets; add large or private data to `.gitignore`.
+
+## Undoing things (added with module 04)
+```bash
+git restore file.py            # discard unstaged edits
+git restore --staged file.py   # unstage (keeps the edit)
+git commit --amend             # fix the last (unpushed) commit message
+git revert <hash>              # new commit that cancels an old one (safe on shared branches)
+```
+Rule of thumb: `revert` for pushed history, `restore`/`amend` for local mistakes.
