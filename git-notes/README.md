@@ -37,3 +37,12 @@ git revert <commit>         # safe undo: creates a new commit
 
 ## Tip for data projects
 Commit code and small datasets; add large or private data to `.gitignore`.
+
+## Merging and pull requests
+```bash
+git fetch origin                      # download remote changes without applying them
+git pull origin main                  # fetch + merge into the current branch
+git switch main && git merge --no-ff my-branch   # keep an explicit merge commit
+```
+A **pull request** is a request to merge your branch into the main branch on the remote,
+so others can review it first. Each lesson branch -> pull request -> merge into main.
