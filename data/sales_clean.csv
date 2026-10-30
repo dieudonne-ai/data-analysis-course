@@ -1,0 +1,7 @@
+order_id,product,quantity,price,month
+1,Pen,10,1.5,Jan
+2,Notebook,3,4.0,Jan
+3,Pen,3,1.5,Feb
+4,Bag,1,25.0,Feb
+5,Pen,5,1.5,Mar
+6,Notebook,2,4.0,Mar

@@ -37,3 +37,25 @@ git revert <commit>         # safe undo: creates a new commit
 
 ## Tip for data projects
 Commit code and small datasets; add large or private data to `.gitignore`.
+
+## Merge conflicts
+A conflict happens when two branches change the same lines. Git marks them:
+```
+<<<<<<< HEAD
+price = 1.5
+=======
+price = 1.6
+>>>>>>> fix-prices
+```
+Edit the file to keep the right version, remove the markers, then:
+```bash
+git add file.py
+git commit          # completes the merge
+```
+
+## Useful extras
+```bash
+git stash           # park unfinished work, git stash pop to restore
+git log --oneline --graph --all
+git commit --amend  # fix the last (unpushed) commit message
+```
