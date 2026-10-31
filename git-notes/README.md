@@ -46,3 +46,12 @@ git switch main && git merge --no-ff my-branch   # keep an explicit merge commit
 ```
 A **pull request** is a request to merge your branch into the main branch on the remote,
 so others can review it first. Each lesson branch -> pull request -> merge into main.
+
+## Branching in practice
+```bash
+git switch -c module-05      # create + switch to a new branch
+git branch -a                # list local and remote branches
+git log --oneline --graph    # visualize history
+git switch main && git merge module-05 && git branch -d module-05
+```
+Tip: keep each branch small and focused (one lesson = one branch), so merges stay conflict-free.
