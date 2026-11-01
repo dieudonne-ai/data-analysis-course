@@ -55,3 +55,11 @@ git log --oneline --graph    # visualize history
 git switch main && git merge module-05 && git branch -d module-05
 ```
 Tip: keep each branch small and focused (one lesson = one branch), so merges stay conflict-free.
+
+## .gitignore and tags
+```bash
+echo "*.png" >> .gitignore    # ignore generated files; commit the code that makes them
+git rm --cached file.png      # stop tracking a file already committed
+git tag -a v0.6 -m "Modules 01-06"   # name a milestone
+git push origin v0.6
+```
