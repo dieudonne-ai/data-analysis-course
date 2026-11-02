@@ -63,3 +63,13 @@ git rm --cached file.png      # stop tracking a file already committed
 git tag -a v0.6 -m "Modules 01-06"   # name a milestone
 git push origin v0.6
 ```
+
+## Stash, restore and revert
+```bash
+git stash                    # shelve uncommitted work to get a clean tree
+git stash pop                # bring it back
+git restore file.py          # throw away edits in one file
+git revert <commit>          # undo a pushed commit by adding a new one (history stays intact)
+git log -p -- file.py        # see how one file changed over time
+```
+Rule: never rewrite history that others have pulled; use `revert`, not `reset --hard`.
