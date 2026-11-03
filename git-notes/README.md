@@ -73,3 +73,11 @@ git revert <commit>          # undo a pushed commit by adding a new one (history
 git log -p -- file.py        # see how one file changed over time
 ```
 Rule: never rewrite history that others have pulled; use `revert`, not `reset --hard`.
+
+## Inspecting history: diff, blame, bisect
+```bash
+git diff main..my-branch     # what merging my-branch would change
+git blame file.py            # who last changed each line, and in which commit
+git log -S "revenue"         # find commits that added/removed the text "revenue"
+git bisect start; git bisect bad; git bisect good <old-commit>   # binary-search for the commit that broke something
+```
