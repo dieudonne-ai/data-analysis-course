@@ -81,3 +81,13 @@ git blame file.py            # who last changed each line, and in which commit
 git log -S "revenue"         # find commits that added/removed the text "revenue"
 git bisect start; git bisect bad; git bisect good <old-commit>   # binary-search for the commit that broke something
 ```
+
+## Pull, fetch and keeping main up to date
+```bash
+git fetch origin             # download remote changes without touching your files
+git pull origin main         # fetch + merge into the current branch
+git switch -c module-10 main # start the next lesson from an up-to-date main
+git merge --no-ff module-10  # merge it back, keeping a visible merge commit
+git branch -d module-10      # delete the merged branch
+```
+Pull requests: push a branch, open a PR, review, then merge into `main`. Pull `main` again before starting new work.
