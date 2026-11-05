@@ -91,3 +91,13 @@ git merge --no-ff module-10  # merge it back, keeping a visible merge commit
 git branch -d module-10      # delete the merged branch
 ```
 Pull requests: push a branch, open a PR, review, then merge into `main`. Pull `main` again before starting new work.
+
+## Rebase, cherry-pick and releases
+```bash
+git rebase main              # replay my branch commits on top of the latest main (linear history)
+git cherry-pick <commit>     # copy one commit from another branch onto this one
+git tag -a v1.0 -m "Course complete"   # mark a milestone
+git push origin v1.0         # share the tag (tags are not pushed by default)
+```
+Rule of thumb: `merge` to combine shared work, `rebase` only on your own unpushed branches.
+A tagged release (`v1.0`) lets others cite exactly which version of the analysis they used.
