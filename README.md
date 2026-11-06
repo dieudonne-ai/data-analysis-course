@@ -17,6 +17,7 @@ New lessons are added regularly, one commit per lesson.
 | 08 | [Hypothesis Testing](08-hypothesis-testing/README.md) | done |
 | 09 | [Regression & Prediction](09-regression/README.md) | done |
 | 10 | [Final Project](10-final-project/README.md) | done |
+| 11 | [Time Series Analysis (bonus)](11-time-series/README.md) | done |
 
 ## Setup
 

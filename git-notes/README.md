@@ -101,3 +101,14 @@ git push origin v1.0         # share the tag (tags are not pushed by default)
 ```
 Rule of thumb: `merge` to combine shared work, `rebase` only on your own unpushed branches.
 A tagged release (`v1.0`) lets others cite exactly which version of the analysis they used.
+
+## Working with remotes and clean history
+```bash
+git remote -v                      # which remotes does this repo know?
+git branch -vv                     # local branches and the remote branch each one tracks
+git push -u origin my-branch       # first push: also sets the upstream
+git stash -u                       # shelve changes, including untracked files
+git commit --amend --no-edit       # fold a forgotten file into the last (unpushed!) commit
+git log --oneline --since="1 day ago"   # what did I do today?
+```
+A daily-commit habit: one small lesson, one commit, one pull request, merged the same day.
