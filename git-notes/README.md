@@ -112,3 +112,16 @@ git commit --amend --no-edit       # fold a forgotten file into the last (unpush
 git log --oneline --since="1 day ago"   # what did I do today?
 ```
 A daily-commit habit: one small lesson, one commit, one pull request, merged the same day.
+
+## Inspecting history and finding bugs
+```bash
+git log --oneline --graph --all    # draw the branch/merge history as a graph
+git show <commit>                  # see exactly what one commit changed
+git log -p -- path/to/file         # history of a single file, with diffs
+git bisect start                   # binary-search for the commit that introduced a bug
+git bisect bad                     # current commit is broken
+git bisect good <old-commit>       # this old commit worked; git checks out the middle
+git bisect reset                   # finish and return to your branch
+git restore --source=<commit> file # recover an older version of one file
+```
+`bisect` finds a bug among 1000 commits in about 10 steps. Small, focused commits make it far more useful.
