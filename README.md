@@ -19,6 +19,7 @@ New lessons are added regularly, one commit per lesson.
 | 10 | [Final Project](10-final-project/README.md) | done |
 | 11 | [Time Series Analysis (bonus)](11-time-series/README.md) | done |
 | 12 | [A/B Testing (bonus)](12-ab-testing/README.md) | done |
+| 13 | [SQL for Analysts (bonus)](13-sql/README.md) | done |
 
 ## Setup
 

@@ -125,3 +125,13 @@ git bisect reset                   # finish and return to your branch
 git restore --source=<commit> file # recover an older version of one file
 ```
 `bisect` finds a bug among 1000 commits in about 10 steps. Small, focused commits make it far more useful.
+
+## Recovering lost work and saving time
+```bash
+git reflog                         # every place HEAD has been: your safety net after a bad reset
+git reset --hard <reflog-entry>    # jump back to a state you thought was lost (e.g. HEAD@{2})
+git config --global alias.lg "log --oneline --graph --all"   # now `git lg` is a shortcut
+git clean -nd                      # DRY RUN: list untracked files that `git clean -fd` would delete
+git restore --staged file          # unstage a file but keep your edits
+```
+Almost nothing committed is ever truly lost: `reflog` remembers for ~90 days. Always use `-n` (dry run) before a destructive command.
