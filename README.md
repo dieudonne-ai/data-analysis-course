@@ -20,6 +20,7 @@ New lessons are added regularly, one commit per lesson.
 | 11 | [Time Series Analysis (bonus)](11-time-series/README.md) | done |
 | 12 | [A/B Testing (bonus)](12-ab-testing/README.md) | done |
 | 13 | [SQL for Analysts (bonus)](13-sql/README.md) | done |
+| 14 | [Data Storytelling & Reporting (bonus)](14-storytelling/README.md) | done |
 
 ## Setup
 
