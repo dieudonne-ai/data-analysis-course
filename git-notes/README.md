@@ -135,3 +135,15 @@ git clean -nd                      # DRY RUN: list untracked files that `git cle
 git restore --staged file          # unstage a file but keep your edits
 ```
 Almost nothing committed is ever truly lost: `reflog` remembers for ~90 days. Always use `-n` (dry run) before a destructive command.
+
+## Hooks, worktrees and .gitattributes
+```bash
+git worktree add ../course-fix fix-typo   # a 2nd working folder on another branch, no stashing needed
+git worktree remove ../course-fix         # clean it up when done
+echo '#!/bin/sh\npython -m pyflakes . || exit 1' > .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit
+git commit --no-verify                    # skip the hook in an emergency (use sparingly)
+echo "*.pdf binary" >> .gitattributes     # tell git not to try to diff/merge PDFs as text
+git log --stat -3                         # which files did the last 3 commits touch?
+```
+A **pre-commit hook** runs a check (tests, linter) before every commit: bad code never enters history.
+A **worktree** lets you fix a bug on one branch while keeping your analysis open on another.
