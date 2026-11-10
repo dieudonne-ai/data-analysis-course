@@ -21,6 +21,7 @@ New lessons are added regularly, one commit per lesson.
 | 12 | [A/B Testing (bonus)](12-ab-testing/README.md) | done |
 | 13 | [SQL for Analysts (bonus)](13-sql/README.md) | done |
 | 14 | [Data Storytelling & Reporting (bonus)](14-storytelling/README.md) | done |
+| 15 | [Classification & Model Evaluation (bonus)](15-classification/README.md) | done |
 
 ## Setup
 
