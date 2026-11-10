@@ -147,3 +147,18 @@ git log --stat -3                         # which files did the last 3 commits t
 ```
 A **pre-commit hook** runs a check (tests, linter) before every commit: bad code never enters history.
 A **worktree** lets you fix a bug on one branch while keeping your analysis open on another.
+
+## Cherry-pick, grep, shortlog and resolving conflicts
+```bash
+git cherry-pick <commit>           # copy ONE commit from another branch onto the current one
+git grep "read_csv"                # search the text of every tracked file (faster than grep -r)
+git shortlog -sn                   # commits per author: who contributed what
+git log --author="Ada" --oneline   # filter history by person
+git merge feature                  # if it stops with "CONFLICT", open the file and look for markers:
+#   <<<<<<< HEAD        your version
+#   =======
+#   >>>>>>> feature     their version
+git add file && git commit         # after editing out the markers, mark it resolved
+git merge --abort                  # give up and return to before the merge
+```
+A **conflict** is not an error: two branches changed the same lines and git asks you to choose. Keep both, one, or write something new, then commit.
