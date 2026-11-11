@@ -162,3 +162,15 @@ git add file && git commit         # after editing out the markers, mark it reso
 git merge --abort                  # give up and return to before the merge
 ```
 A **conflict** is not an error: two branches changed the same lines and git asks you to choose. Keep both, one, or write something new, then commit.
+
+## Amend, find-by-content, submodules and signed tags
+```bash
+git commit --amend -m "Better message"   # rewrite the LAST commit (only if not pushed yet!)
+git commit --amend --no-edit             # add forgotten files to the last commit: git add file first
+git log -S"kmeans" --oneline             # which commits added or removed the text "kmeans"?
+git log -p -- 16-clustering/README.md    # full history of one file with the diffs
+git show HEAD~2:README.md                # print a file as it was 2 commits ago
+git tag -a v1.0 -m "Course complete"     # annotated tag: stores author, date and message
+git submodule add <url> libs/tool        # embed another repository at a fixed commit
+```
+`--amend` replaces a commit with a new one (new hash), so never amend commits others already pulled. `log -S` is the "pickaxe": ideal to find *when* a function or a column name appeared.
