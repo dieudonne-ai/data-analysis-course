@@ -174,3 +174,15 @@ git tag -a v1.0 -m "Course complete"     # annotated tag: stores author, date an
 git submodule add <url> libs/tool        # embed another repository at a fixed commit
 ```
 `--amend` replaces a commit with a new one (new hash), so never amend commits others already pulled. `log -S` is the "pickaxe": ideal to find *when* a function or a column name appeared.
+
+## Archive, bundle, describe and clean
+```bash
+git archive -o course.zip HEAD            # zip of the current files only, without .git
+git archive --format=tar HEAD 17-pca | gzip > pca.tgz   # export just one folder
+git bundle create course.bundle --all     # the WHOLE repo in one file (send it by email / USB, no server needed)
+git clone course.bundle copy              # restore a repository from a bundle
+git describe --tags                       # name the commit from the nearest tag, e.g. v1.0-12-g3a1f9c2
+git clean -nd                             # DRY RUN: list untracked files/folders that would be deleted
+git clean -fd                             # actually delete them (cannot be undone!)
+```
+`archive` is how you share a clean copy of the course; `bundle` is an offline backup of the full history. `describe` gives human-friendly version names for builds and reports. Like `reset --hard`, `clean -f` is destructive: always run `-n` first.

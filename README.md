@@ -23,6 +23,7 @@ New lessons are added regularly, one commit per lesson.
 | 14 | [Data Storytelling & Reporting (bonus)](14-storytelling/README.md) | done |
 | 15 | [Classification & Model Evaluation (bonus)](15-classification/README.md) | done |
 | 16 | [Clustering & Customer Segmentation (bonus)](16-clustering/README.md) | done |
+| 17 | [Dimensionality Reduction with PCA (bonus)](17-pca/README.md) | done |
 
 ## Setup
 
