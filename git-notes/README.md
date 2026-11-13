@@ -186,3 +186,15 @@ git clean -nd                             # DRY RUN: list untracked files/folder
 git clean -fd                             # actually delete them (cannot be undone!)
 ```
 `archive` is how you share a clean copy of the course; `bundle` is an offline backup of the full history. `describe` gives human-friendly version names for builds and reports. Like `reset --hard`, `clean -f` is destructive: always run `-n` first.
+
+## Sparse-checkout, notes, rerere and shallow clones
+```bash
+git clone --depth 1 <url>                 # shallow clone: only the latest commit (fast for big repos)
+git sparse-checkout set 18-feature-engineering   # work tree shows only this folder
+git sparse-checkout disable               # bring every folder back
+git notes add -m "reviewed by Ada" HEAD   # attach a comment to a commit WITHOUT changing its hash
+git log --show-notes                      # display those comments
+git config rerere.enabled true            # "reuse recorded resolution": git remembers how you fixed a conflict
+git rev-list --count HEAD                 # how many commits are in the history?
+```
+`--depth 1` saves time and disk; `sparse-checkout` is useful in a repo with many modules when you only edit one. `notes` annotate history after the fact, and `rerere` replays a conflict fix automatically when the same conflict appears again (handy when rebasing repeatedly).

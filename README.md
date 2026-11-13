@@ -24,6 +24,7 @@ New lessons are added regularly, one commit per lesson.
 | 15 | [Classification & Model Evaluation (bonus)](15-classification/README.md) | done |
 | 16 | [Clustering & Customer Segmentation (bonus)](16-clustering/README.md) | done |
 | 17 | [Dimensionality Reduction with PCA (bonus)](17-pca/README.md) | done |
+| 18 | [Feature Engineering (bonus)](18-feature-engineering/README.md) | done |
 
 ## Setup
 
