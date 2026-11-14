@@ -198,3 +198,16 @@ git config rerere.enabled true            # "reuse recorded resolution": git rem
 git rev-list --count HEAD                 # how many commits are in the history?
 ```
 `--depth 1` saves time and disk; `sparse-checkout` is useful in a repo with many modules when you only edit one. `notes` annotate history after the fact, and `rerere` replays a conflict fix automatically when the same conflict appears again (handy when rebasing repeatedly).
+
+## Stash-patch, patch mode and interactive staging
+```bash
+git add -p                       # review each change ("hunk") and stage only the ones you want: y / n / s (split) / q
+git restore -p file.py           # discard only some hunks of a file
+git stash -p                     # stash only selected hunks
+git stash push -m "wip: cv" -- 19-cross-validation   # stash just one folder, with a name
+git diff --stat                  # summary: files changed and +/- line counts
+git diff --staged --name-only    # list the files that are about to be committed
+git commit --fixup <hash>        # create a commit meant to be squashed into <hash> later
+git rebase -i --autosquash       # squash the fixup commits automatically
+```
+`add -p` is the tool for **clean commits**: when you edited two unrelated things in one file, stage them separately so each commit has one purpose. Just like cross-validation, small honest steps give a history you can trust.
