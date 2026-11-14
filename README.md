@@ -25,6 +25,7 @@ New lessons are added regularly, one commit per lesson.
 | 16 | [Clustering & Customer Segmentation (bonus)](16-clustering/README.md) | done |
 | 17 | [Dimensionality Reduction with PCA (bonus)](17-pca/README.md) | done |
 | 18 | [Feature Engineering (bonus)](18-feature-engineering/README.md) | done |
+| 19 | [Cross-Validation & Hyperparameter Tuning (bonus)](19-cross-validation/README.md) | done |
 
 ## Setup
 
