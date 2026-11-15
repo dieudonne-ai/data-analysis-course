@@ -211,3 +211,15 @@ git commit --fixup <hash>        # create a commit meant to be squashed into <ha
 git rebase -i --autosquash       # squash the fixup commits automatically
 ```
 `add -p` is the tool for **clean commits**: when you edited two unrelated things in one file, stage them separately so each commit has one purpose. Just like cross-validation, small honest steps give a history you can trust.
+
+## Revision ranges, merge-base and custom log formats
+```bash
+git log main..feature            # commits in feature that are NOT in main (what a PR would add)
+git log main...feature --left-right --oneline   # commits on either side but not both (< = main, > = feature)
+git diff main...feature          # changes on feature since it branched off (what GitHub shows in a PR)
+git merge-base main feature      # the common ancestor commit where the two branches split
+git log --pretty=format:"%h %an %ad %s" --date=short   # custom one-line log: hash, author, date, subject
+git log --since="2 weeks ago" -- 20-decision-trees     # recent history of one folder
+git range-diff main~3..old main~3..new   # compare two versions of a branch after a rebase
+```
+Think of it like a decision tree for history: each range is a **question** you ask git ("what is here but not there?"). Two dots = *reachable from B but not A*; three dots = *the symmetric difference* for `log`, but *since the merge-base* for `diff`.
