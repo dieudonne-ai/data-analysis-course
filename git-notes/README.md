@@ -223,3 +223,15 @@ git log --since="2 weeks ago" -- 20-decision-trees     # recent history of one f
 git range-diff main~3..old main~3..new   # compare two versions of a branch after a rebase
 ```
 Think of it like a decision tree for history: each range is a **question** you ask git ("what is here but not there?"). Two dots = *reachable from B but not A*; three dots = *the symmetric difference* for `log`, but *since the merge-base* for `diff`.
+
+## Tracing history: log -L, blame -C and show rev:path
+```bash
+git log -L :boost:21-gradient-boosting/examples/boosting_demo.py   # every change to the function boost()
+git log -L 40,60:README.md                # history of lines 40-60 only
+git blame -w -C -C README.md              # who wrote each line, ignoring whitespace and following moved/copied code
+git blame --ignore-rev <hash> file.py     # skip a big "reformat" commit in blame
+git show HEAD~3:data/churn.csv | head     # print a file as it was 3 commits ago (no checkout needed)
+git restore --source=HEAD~3 -- file.py    # bring back that old version into your working tree
+git log --follow -- new_name.py           # keep the history across a rename
+```
+Like boosting, a codebase is built from many small corrections stacked on top of each other. `log -L` shows you that chain of corrections for one function, so you can see *why* each step was added, while `show rev:path` lets you peek at any earlier "round" without leaving your branch.

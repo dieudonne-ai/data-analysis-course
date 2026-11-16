@@ -27,6 +27,7 @@ New lessons are added regularly, one commit per lesson.
 | 18 | [Feature Engineering (bonus)](18-feature-engineering/README.md) | done |
 | 19 | [Cross-Validation & Hyperparameter Tuning (bonus)](19-cross-validation/README.md) | done |
 | 20 | [Decision Trees & Random Forests (bonus)](20-decision-trees/README.md) | done |
+| 21 | [Gradient Boosting (bonus)](21-gradient-boosting/README.md) | done |
 
 ## Setup
 
