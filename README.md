@@ -28,6 +28,7 @@ New lessons are added regularly, one commit per lesson.
 | 19 | [Cross-Validation & Hyperparameter Tuning (bonus)](19-cross-validation/README.md) | done |
 | 20 | [Decision Trees & Random Forests (bonus)](20-decision-trees/README.md) | done |
 | 21 | [Gradient Boosting (bonus)](21-gradient-boosting/README.md) | done |
+| 22 | [Model Interpretability (bonus)](22-interpretability/README.md) | done |
 
 ## Setup
 

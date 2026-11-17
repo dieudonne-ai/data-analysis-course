@@ -235,3 +235,18 @@ git restore --source=HEAD~3 -- file.py    # bring back that old version into you
 git log --follow -- new_name.py           # keep the history across a rename
 ```
 Like boosting, a codebase is built from many small corrections stacked on top of each other. `log -L` shows you that chain of corrections for one function, so you can see *why* each step was added, while `show rev:path` lets you peek at any earlier "round" without leaving your branch.
+
+## Looking inside git: cat-file, ls-tree, rev-parse and gc
+```bash
+git rev-parse HEAD                     # full hash of the current commit
+git rev-parse --short HEAD~2           # short hash of 2 commits ago
+git cat-file -t HEAD                   # type of an object -> "commit"
+git cat-file -p HEAD                   # print it: tree hash, parent(s), author, message
+git ls-tree HEAD 22-interpretability/  # the tree: one line per file/folder with its blob/tree hash
+git cat-file -p HEAD:README.md | head  # print a blob (file content) straight from the database
+git hash-object README.md              # the hash git WOULD give this file - same content = same hash
+git count-objects -vH                  # how many objects and how much disk the repo uses
+git gc                                 # pack loose objects, prune garbage -> smaller, faster repo
+git fsck                               # check that every object is intact and reachable
+```
+Git itself is a small, interpretable model: a **commit** points to a **tree** (a folder), which points to **blobs** (file contents) and other trees, all named by the SHA hash of their content (see `22-interpretability/diagrams/git_objects.pdf`). Because names come from content, an unchanged PDF is stored only once no matter how many commits include it – which is why committing diagrams in every lesson costs little space.
