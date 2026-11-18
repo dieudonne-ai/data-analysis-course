@@ -250,3 +250,19 @@ git gc                                 # pack loose objects, prune garbage -> sm
 git fsck                               # check that every object is intact and reachable
 ```
 Git itself is a small, interpretable model: a **commit** points to a **tree** (a folder), which points to **blobs** (file contents) and other trees, all named by the SHA hash of their content (see `22-interpretability/diagrams/git_objects.pdf`). Because names come from content, an unchanged PDF is stored only once no matter how many commits include it – which is why committing diagrams in every lesson costs little space.
+
+## Finding the anomalous commit: bisect run, log --grep and safe clean-up
+```bash
+git bisect start HEAD v1.0               # bad = now, good = the tagged release
+git bisect run python check.py           # git tests each midpoint for you: exit 0 = good, 1 = bad, 125 = skip
+git bisect log                           # the steps it took
+git bisect reset                         # back to where you started
+git log --grep="anomaly" -i --oneline    # search commit MESSAGES (case-insensitive)
+git log --grep="fix" --since="1 month ago" --author="Ada"   # filters can be combined
+git branch --merged main                 # branches already merged -> safe to delete
+git branch --no-merged main              # branches with work not yet in main
+git fetch --prune                        # forget remote branches that were deleted on the server
+git revert -m 1 <merge-commit>           # undo a whole merged PR (keep parent 1 = main's side)
+git push --force-with-lease              # force-push ONLY if nobody pushed in the meantime
+```
+`bisect run` is an anomaly detector for history (see `23-anomaly-detection/diagrams/git_bisect_run.pdf`): write a tiny `check.py` that exits with 1 when a number looks wrong (e.g. the total revenue no longer matches), and git finds the first bad commit among 1000 in about 10 runs. Prefer `--force-with-lease` over `--force`: it refuses to overwrite commits you have not seen.
