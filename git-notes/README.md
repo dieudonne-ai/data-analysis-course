@@ -250,3 +250,17 @@ git gc                                 # pack loose objects, prune garbage -> sm
 git fsck                               # check that every object is intact and reachable
 ```
 Git itself is a small, interpretable model: a **commit** points to a **tree** (a folder), which points to **blobs** (file contents) and other trees, all named by the SHA hash of their content (see `22-interpretability/diagrams/git_objects.pdf`). Because names come from content, an unchanged PDF is stored only once no matter how many commits include it – which is why committing diagrams in every lesson costs little space.
+
+## Filtering history and finding unusual commits
+```bash
+git log --author="Claude" --oneline       # only commits by one author (regex, matches name or email)
+git log --grep="module 2[0-9]" -i         # commits whose message matches a pattern
+git log --since=2026-11-01 --until=2026-11-15 --oneline   # a date window
+git log --diff-filter=A --name-only       # commits that ADDED files (D = deleted, R = renamed)
+git log --numstat -1                      # lines added/deleted per file, last commit
+git log --shortstat --oneline             # "3 files changed, 120 insertions(+)" per commit
+git log --min-parents=2 --oneline         # merges only (= --merges); --max-parents=1 hides them
+git log --format="%h %(trailers:key=Co-Authored-By,valueonly)"   # read commit trailers
+git commit --trailer "Reviewed-by: Ana <ana@example.com>"        # add a trailer when committing
+```
+This is anomaly detection for your history: filter down to a window, compute a size per commit with `--numstat`, and look at the extremes (see `23-anomaly-detection/diagrams/git_commit_outliers.pdf`). A huge commit can be a data file (fine – or better tracked with Git LFS), a generated file that belongs in `.gitignore`, or several unrelated changes squashed together that should have been split. Trailers like `Co-Authored-By:` or `Reviewed-by:` are key/value lines at the end of the message that tools can read reliably.
