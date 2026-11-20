@@ -264,3 +264,17 @@ git log --format="%h %(trailers:key=Co-Authored-By,valueonly)"   # read commit t
 git commit --trailer "Reviewed-by: Ana <ana@example.com>"        # add a trailer when committing
 ```
 This is anomaly detection for your history: filter down to a window, compute a size per commit with `--numstat`, and look at the extremes (see `23-anomaly-detection/diagrams/git_commit_outliers.pdf`). A huge commit can be a data file (fine – or better tracked with Git LFS), a generated file that belongs in `.gitignore`, or several unrelated changes squashed together that should have been split. Trailers like `Co-Authored-By:` or `Reviewed-by:` are key/value lines at the end of the message that tools can read reliably.
+
+## Co-change analysis, word-diff and maintenance
+```bash
+git log --no-merges --name-only --pretty=format:@     # commits as "baskets" of files (split on @)
+git log --stat -5                       # files + insertions/deletions bar per commit
+git log --format= --name-only | sort | uniq -c | sort -rn | head   # most frequently changed files ("hot spots")
+git diff --word-diff HEAD~1             # changes word by word: ideal for Markdown lessons and reports
+git diff --word-diff=color --word-diff-regex='[^[:space:],]+'      # treat each CSV cell as a "word"
+git diff --color-moved=zebra HEAD~1     # blocks that were moved, not rewritten, get their own colour
+git diff --ignore-all-space             # (-w) ignore indentation-only changes
+git maintenance start                   # schedule background gc/prefetch/commit-graph for this repo
+git maintenance run --task=commit-graph # speed up git log on big histories right now
+```
+Market basket analysis (module 24) works on history too: each commit is a receipt, each file an item. A file pair with high **lift** is coupled – change one, check the other. A file that appears in almost every commit (like this README) has high confidence with everything but lift ≈ 1, so it tells you nothing: the same popularity trap as milk in a supermarket. `--word-diff` makes reviewing prose and CSV changes much easier than line diffs, and `git maintenance` keeps a long-lived repository fast without thinking about it.
