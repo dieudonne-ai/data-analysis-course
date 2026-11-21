@@ -31,6 +31,7 @@ New lessons are added regularly, one commit per lesson.
 | 22 | [Model Interpretability (bonus)](22-interpretability/README.md) | done |
 | 23 | [Anomaly Detection (bonus)](23-anomaly-detection/README.md) | done |
 | 24 | [Market Basket Analysis (bonus)](24-market-basket/README.md) | done |
+| 25 | [Survival Analysis (bonus)](25-survival-analysis/README.md) | done |
 
 ## Setup
 

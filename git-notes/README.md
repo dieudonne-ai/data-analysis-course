@@ -278,3 +278,18 @@ git maintenance start                   # schedule background gc/prefetch/commit
 git maintenance run --task=commit-graph # speed up git log on big histories right now
 ```
 Market basket analysis (module 24) works on history too: each commit is a receipt, each file an item. A file pair with high **lift** is coupled – change one, check the other. A file that appears in almost every commit (like this README) has high confidence with everything but lift ≈ 1, so it tells you nothing: the same popularity trap as milk in a supermarket. `--word-diff` makes reviewing prose and CSV changes much easier than line diffs, and `git maintenance` keeps a long-lived repository fast without thinking about it.
+
+## Branch lifecycle: merged branches and pruning
+```bash
+git branch -vv                          # local branches, their upstream and ahead/behind counts
+git branch --merged main                # already merged: safe to delete
+git branch --no-merged main             # still open work
+git branch -a --sort=-committerdate     # all branches, most recently active first
+git for-each-ref --sort=committerdate --format='%(committerdate:relative) %(refname:short)' refs/heads
+git log --first-parent main --oneline   # main's own story: one line per merged PR
+git branch -d module-25                 # delete a merged branch (refuses if not merged)
+git push origin --delete module-25      # delete the branch on the remote
+git fetch --prune                       # (-p) remove remote-tracking branches deleted on GitHub
+git config --global fetch.prune true    # ...and do it automatically on every fetch
+```
+Survival analysis (module 25) applies to branches: "merged" is the event, a branch still open is censored. In this course each lesson branch lives for minutes, is merged into `main` through a pull request and can then be deleted. `--first-parent` hides the commits inside each branch so `main` reads like a table of contents of merged lessons, and `fetch.prune` stops dead branches from piling up in `git branch -a`.
