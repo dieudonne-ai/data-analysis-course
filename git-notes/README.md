@@ -278,3 +278,18 @@ git maintenance start                   # schedule background gc/prefetch/commit
 git maintenance run --task=commit-graph # speed up git log on big histories right now
 ```
 Market basket analysis (module 24) works on history too: each commit is a receipt, each file an item. A file pair with high **lift** is coupled – change one, check the other. A file that appears in almost every commit (like this README) has high confidence with everything but lift ≈ 1, so it tells you nothing: the same popularity trap as milk in a supermarket. `--word-diff` makes reviewing prose and CSV changes much easier than line diffs, and `git maintenance` keeps a long-lived repository fast without thinking about it.
+
+## Branch housekeeping: for-each-ref, --merged and prune
+```bash
+git for-each-ref --sort=-committerdate refs/heads \
+    --format='%(refname:short) %(committerdate:relative) %(authorname)'   # branches by last activity
+git branch --sort=-committerdate          # the same, short version
+git branch --merged main                  # already in main -> safe to delete with git branch -d
+git branch --no-merged main               # unfinished work: review or finish it
+git branch -vv                            # each branch with its upstream and ahead/behind counts
+git fetch --prune                         # (-p) drop remote-tracking branches deleted on the server
+git config --global fetch.prune true      # ...and do it on every fetch
+git push origin --delete old-branch       # delete a branch on GitHub from the command line
+git log --date=format:'%Y-%m' --format=%ad | sort | uniq -c   # commits per month
+```
+Like customer cohorts (module 25), branches have a start date and an end date (the merge). Short-lived branches – one lesson, one PR, merged the same day – are easy to review and almost never conflict. Clean up regularly: `--merged` tells you what is safe to delete, `--no-merged` shows work that is still open, and `fetch --prune` keeps your list of remote branches in sync with GitHub.
