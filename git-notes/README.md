@@ -293,3 +293,17 @@ git push origin --delete old-branch       # delete a branch on GitHub from the c
 git log --date=format:'%Y-%m' --format=%ad | sort | uniq -c   # commits per month
 ```
 Like customer cohorts (module 25), branches have a start date and an end date (the merge). Short-lived branches – one lesson, one PR, merged the same day – are easy to review and almost never conflict. Clean up regularly: `--merged` tells you what is safe to delete, `--no-merged` shows work that is still open, and `fetch --prune` keeps your list of remote branches in sync with GitHub.
+
+## Commit messages as data: format, grep and trailers
+```bash
+git commit -m "Subject in imperative" -m "Body: what and why"   # each -m = one paragraph
+git commit --trailer "Reviewed-by: Ana <ana@example.com>"      # add a Key: value trailer (git >= 2.32)
+git commit --amend                       # fix the message of the last (unpushed) commit
+git log --format=%s                      # subjects only;  %b = body,  %B = full message
+git log --format='%h %(trailers:key=Co-Authored-By,valueonly)' # read one trailer per commit
+git log -i --grep='^fix' --oneline       # message search (regex, case-insensitive)
+git log --grep=module --grep=diagram --all-match --oneline     # both words must appear
+git log --format=%s | tr ' ' '\n' | tr 'A-Z' 'a-z' | sort | uniq -c | sort -rn | head
+git config --global commit.template ~/.gitmessage.txt          # pre-filled message skeleton
+```
+A history is a text corpus (module 26). Keep the subject short (≤ 72 characters) and imperative ("Add", "Fix", "Remove"), leave a blank line, then explain *why* in the body. With a convention such as **Conventional Commits** (`feat:`, `fix:`, `docs:`), `git log --grep` and changelog generators can classify every commit automatically – the same idea as tokenizing reviews and counting words.
