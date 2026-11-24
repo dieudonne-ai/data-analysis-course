@@ -307,3 +307,17 @@ git log --format=%s | tr ' ' '\n' | tr 'A-Z' 'a-z' | sort | uniq -c | sort -rn |
 git config --global commit.template ~/.gitmessage.txt          # pre-filled message skeleton
 ```
 A history is a text corpus (module 26). Keep the subject short (≤ 72 characters) and imperative ("Add", "Fix", "Remove"), leave a blank line, then explain *why* in the body. With a convention such as **Conventional Commits** (`feat:`, `fix:`, `docs:`), `git log --grep` and changelog generators can classify every commit automatically – the same idea as tokenizing reviews and counting words.
+
+## Reproducible runs: status --porcelain, check-ignore and skip-worktree
+```bash
+git status --porcelain                    # machine-readable status: empty = clean tree
+test -z "$(git status --porcelain)" || { echo "commit first"; exit 1; }   # guard in a run script
+git diff --quiet; echo $?                 # 0 = no changes in tracked files, 1 = changes
+git rev-parse --short HEAD                # commit id to stamp on results
+git describe --always --dirty             # commit id + "-dirty" if the tree has changes
+git check-ignore -v results/run.csv       # which .gitignore line ignores this file (and in which file)
+git ls-files --others --ignored --exclude-standard   # all ignored files
+git update-index --skip-worktree config/local.yaml   # ignore local edits to a TRACKED file
+git ls-files -v | grep '^S'               # list files marked skip-worktree
+```
+A simulation (module 27) is reproducible when you can name the code (commit), the data and the random seed. Run from a clean tree, stamp results with `rev-parse`/`describe --dirty`, and keep regenerable outputs out of git with `.gitignore`. `.gitignore` only works for untracked files; for a tracked config file you edit locally, `--skip-worktree` stops git from showing (and committing) your changes.
