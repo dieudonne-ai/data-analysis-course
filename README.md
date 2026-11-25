@@ -34,6 +34,7 @@ New lessons are added regularly, one commit per lesson.
 | 25 | [Cohort & Retention Analysis (bonus)](25-cohort-retention/README.md) | done |
 | 26 | [Text Analysis Basics (bonus)](26-text-analysis/README.md) | done |
 | 27 | [Monte Carlo Simulation & the Bootstrap (bonus)](27-simulation/README.md) | done |
+| 28 | [Causal Inference Basics (bonus)](28-causal-inference/README.md) | done |
 
 ## Setup
 
