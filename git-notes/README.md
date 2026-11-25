@@ -321,3 +321,18 @@ git update-index --skip-worktree config/local.yaml   # ignore local edits to a T
 git ls-files -v | grep '^S'               # list files marked skip-worktree
 ```
 A simulation (module 27) is reproducible when you can name the code (commit), the data and the random seed. Run from a clean tree, stamp results with `rev-parse`/`describe --dirty`, and keep regenerable outputs out of git with `.gitignore`. `.gitignore` only works for untracked files; for a tracked config file you edit locally, `--skip-worktree` stops git from showing (and committing) your changes.
+
+## Merge conflicts: diff3, --ours/--theirs and abort
+```bash
+git config --global merge.conflictStyle diff3   # conflict markers also show the merge-base version
+git merge my-branch                      # "CONFLICT (content): Merge conflict in config.py"
+git status                               # files listed as "both modified"
+git diff --name-only --diff-filter=U     # just the conflicted file names
+git checkout --ours config.py            # take the current branch's version (HEAD)
+git checkout --theirs config.py          # take the incoming branch's version
+git merge -X theirs my-branch            # resolve every conflicting hunk in favour of the incoming side
+git diff --check                         # warn about leftover <<<<<<< ======= >>>>>>> markers
+git add config.py && git commit          # mark resolved, finish the merge
+git merge --abort                        # cancel and return to the state before the merge
+```
+A conflict happens only when both sides changed the **same lines** since the merge-base. `diff3` shows three versions (ours, base, theirs), so you can see which side changed what – the same "compare each group with its own before" idea as difference-in-differences (module 28). Note: during a `rebase`, "ours" and "theirs" are swapped (ours = the branch you are rebasing onto). Re-run the analysis after resolving, and regenerate data files instead of hand-merging them.
