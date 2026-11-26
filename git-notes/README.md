@@ -336,3 +336,16 @@ git add config.py && git commit          # mark resolved, finish the merge
 git merge --abort                        # cancel and return to the state before the merge
 ```
 A conflict happens only when both sides changed the **same lines** since the merge-base. `diff3` shows three versions (ours, base, theirs), so you can see which side changed what – the same "compare each group with its own before" idea as difference-in-differences (module 28). Note: during a `rebase`, "ours" and "theirs" are swapped (ours = the branch you are rebasing onto). Re-run the analysis after resolving, and regenerate data files instead of hand-merging them.
+
+## Diffing data files: .gitattributes, textconv and --no-index
+```bash
+echo '*.csv diff=csv' >> .gitattributes          # CSV files use a diff driver called "csv"
+git config diff.csv.wordRegex '[^,]+'            # --word-diff treats each cell as a word
+git config diff.csv.textconv 'column -s, -t'     # diffs show CSVs as aligned columns
+git diff --word-diff HEAD~1 -- data/price_list.csv   # filters,[-4.00-]{+4.40+},1.50
+git diff --no-textconv HEAD~1                    # raw diff, bypassing textconv
+git diff --no-index a.csv b.csv                  # compare two files that are not tracked (or not in a repo)
+git diff --exit-code -- data/; echo $?           # exit status 1 if anything changed (scripts, CI)
+git check-attr diff -- data/price_list.csv       # which diff driver applies to this file?
+```
+A diff driver changes how git **shows** a file, never how it stores or merges it. Commit `.gitattributes` so everyone uses the same driver; the `textconv`/`wordRegex` settings live in each person's git config. See `29-price-elasticity/diagrams/git_csv_diff.pdf` for the three views of one price change.
