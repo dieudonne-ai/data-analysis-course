@@ -35,6 +35,7 @@ New lessons are added regularly, one commit per lesson.
 | 26 | [Text Analysis Basics (bonus)](26-text-analysis/README.md) | done |
 | 27 | [Monte Carlo Simulation & the Bootstrap (bonus)](27-simulation/README.md) | done |
 | 28 | [Causal Inference Basics (bonus)](28-causal-inference/README.md) | done |
+| 29 | [Price Elasticity & Demand Analysis (bonus)](29-price-elasticity/README.md) | done |
 
 ## Setup
 
