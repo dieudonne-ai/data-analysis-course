@@ -349,3 +349,17 @@ git diff --exit-code -- data/; echo $?           # exit status 1 if anything cha
 git check-attr diff -- data/price_list.csv       # which diff driver applies to this file?
 ```
 A diff driver changes how git **shows** a file, never how it stores or merges it. Commit `.gitattributes` so everyone uses the same driver; the `textconv`/`wordRegex` settings live in each person's git config. See `29-price-elasticity/diagrams/git_csv_diff.pdf` for the three views of one price change.
+
+## Time in git: --since, date formats and reflog dates
+```bash
+git log --since="2026-11-22" --until="2026-11-25" --oneline   # date window (uses the committer date)
+git log --since="2 weeks ago" --oneline                       # relative dates: "yesterday", "3 days ago"
+git log --date=short --format='%ad %h %s'                     # author date as YYYY-MM-DD
+git log --date=relative -3                                    # "2 days ago"
+git log --format='%h  author %ad  committer %cd' --date=iso -3   # see both dates side by side
+git rev-list --count --since="1 month ago" HEAD               # number of commits in the last month
+git show main@{yesterday}                                     # where your local main was yesterday (reflog)
+git diff main@{1.week.ago} main --stat                        # what changed in your main this week
+git blame --date=short README.md                              # date each line was last written
+```
+Every commit has an **author date** (when the change was written) and a **committer date** (when it was applied – changed by rebase, cherry-pick and `--amend`). `@{...}` dates come from the local reflog, so they only know what happened in *your* clone (and the reflog expires after 90 days by default). `git blame` dates are a ready-made time-to-event dataset: lines that still exist are censored observations (module 30). See `30-survival-analysis/diagrams/git_dates.pdf`.
