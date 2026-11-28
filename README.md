@@ -36,6 +36,7 @@ New lessons are added regularly, one commit per lesson.
 | 27 | [Monte Carlo Simulation & the Bootstrap (bonus)](27-simulation/README.md) | done |
 | 28 | [Causal Inference Basics (bonus)](28-causal-inference/README.md) | done |
 | 29 | [Price Elasticity & Demand Analysis (bonus)](29-price-elasticity/README.md) | done |
+| 30 | [Survival Analysis: Time Until Churn (bonus)](30-survival-analysis/README.md) | done |
 
 ## Setup
 
