@@ -349,3 +349,17 @@ git diff --exit-code -- data/; echo $?           # exit status 1 if anything cha
 git check-attr diff -- data/price_list.csv       # which diff driver applies to this file?
 ```
 A diff driver changes how git **shows** a file, never how it stores or merges it. Commit `.gitattributes` so everyone uses the same driver; the `textconv`/`wordRegex` settings live in each person's git config. See `29-price-elasticity/diagrams/git_csv_diff.pdf` for the three views of one price change.
+
+## Time in git: author vs committer date, --since and ref@{date}
+```bash
+git log --format='%h %ad %cd %s' --date=short     # author date (%ad) and committer date (%cd)
+git log --format='%at %ct %s'                     # the same as Unix seconds - easy to subtract
+git log --since='2 weeks ago' --until=yesterday   # date window (--after / --before are aliases)
+git rev-list --count --since=2026-11-01 main      # number of commits since a date
+git rev-list -1 --before=2026-11-27 main          # last commit of the SHARED history before a date
+git log -1 --format=%cr main                      # "3 hours ago"
+git show main@{yesterday}:README.md               # file as YOUR main pointed yesterday (reflog, local)
+git diff main@{1.week.ago} main --stat            # what changed on your main in a week
+git commit --date='2026-11-27 18:00' -m "..."     # set the author date of a new commit
+```
+Rebase, cherry-pick and `--amend` keep the author date but set a new committer date, so the two can differ. `ref@{date}` reads your reflog (local, ~90 days); for "the project as of a date" use `rev-list --before`. Commit dates come from the committer's clock – fine for analysis, not proof. Time-to-merge is a survival duration where open branches are censored: see module 30 and `30-survival-analysis/diagrams/git_time_travel.pdf`.
